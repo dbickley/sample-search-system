@@ -1,6 +1,5 @@
 scrapy
 elasticsearch
-elasticsearch_dsl
 elasticsearch[async]
 flask
 flask-sqlalchemy

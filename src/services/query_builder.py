@@ -9,20 +9,18 @@ class QueryBuilder:
 
     def _build_keyword_query(self, query, fields_to_match, predicted_category, keyword_search_enabled, search_config):
         if not query:
-            logging.info("No query provided, running match_all")
             return {"match_all": {}}
 
-        logging.info("query provided: %s", query)
         keyword_queries = []
-        if(keyword_search_enabled): # Safe access
-            match_types = search_config.keyword.get("match_types", {})  # Safe access, returns {} if missing
+        if(keyword_search_enabled): 
+            match_types = search_config.keyword.get("match_types", {}) 
             for match_type, boost in match_types.items():
                 if match_type == "phrase":
                     keyword_queries.append({"multi_match": {"query": query, "fields": fields_to_match, "type": "phrase", "boost": boost}})
                 elif match_type == "phrase_prefix":
                     keyword_queries.append({"multi_match": {"query": query, "fields": fields_to_match, "type": "phrase_prefix", "boost": boost}})
                 elif match_type == "fuzzy":
-                    fuzziness = search_config.fuzziness.get("default", "AUTO") # Safe access
+                    fuzziness = search_config.fuzziness.get("default", "AUTO") 
                     keyword_queries.append({"multi_match": {"query": query, "fields": fields_to_match, "fuzziness": fuzziness, "boost": boost}})
                 elif match_type == "best_fields":
                     keyword_queries.append({"multi_match": {"query": query, "fields": fields_to_match, "type": "best_fields", "boost": boost}})
@@ -32,25 +30,24 @@ class QueryBuilder:
         predicted_category_boost = search_config.keyword.get("predicted_category_boost")
         if predicted_category and predicted_category_boost:
             keyword_query["bool"]["should"].append(
-                {"bool": {"must": [{"match": {"main_category": predicted_category}}], "boost": predicted_category_boost}} # Wrap in bool query
+                {"bool": {"must": [{"match": {"main_category": predicted_category}}], "boost": predicted_category_boost}}
             )
-            logging.info("Predicted category: %s", predicted_category)
         return keyword_query
 
     def _build_vector_query(self, embedding_vector, search_config):
-        if not embedding_vector or not search_config.vector.get("enabled", False): # Safe access
+        if not embedding_vector or not search_config.vector.get("enabled", False):
             return None
 
         logging.info("Vector search enabled")
         vector_query = {
             "knn": {
                 "field": "name_embedding",
-                "query_vector": embedding_vector,  # Use the Python list
-                "k": search_config.vector.get("k", 10), # Get k from config or default to 10
-                "num_candidates": search_config.vector.get("num_candidates", 1000) # Get num_candidates from config or default to 100
+                "query_vector": embedding_vector, 
+                "k": search_config.vector.get("k", 10),
+                "num_candidates": search_config.vector.get("num_candidates", 1000)
             }
         }
-        return {"bool": {"should": [vector_query], "boost": search_config.vector.get("boost", 0.8)}}  # Safe access
+        return {"bool": {"should": [vector_query], "boost": search_config.vector.get("boost", 0.8)}}
 
     def _build_facet_filter(self, facets, search_config):
         if not facets:
@@ -58,7 +55,7 @@ class QueryBuilder:
 
         must_clauses = []
         for field, values in facets.items():
-            boost = search_config.facets.get(field, {}).get("boost", 1.0) # Safe access
+            boost = search_config.facets.get(field, {}).get("boost", 1.0)
             if isinstance(values, list):
                 must_clauses.append({"terms": {field: values, "boost": boost}})
             else:
@@ -69,10 +66,10 @@ class QueryBuilder:
     def _build_category_filter(self, main_category, sub_category, search_config):
         category_queries = []
         if main_category:
-            boost = search_config.categories.get("main_category", {}).get("boost", 1.0) # Safe access
+            boost = search_config.categories.get("main_category", {}).get("boost", 1.0)
             category_queries.append({"match": {"main_category": main_category, "boost": boost}})
         if sub_category:
-            boost = search_config.categories.get("sub_category", {}).get("boost", 1.0) # Safe access
+            boost = search_config.categories.get("sub_category", {}).get("boost", 1.0)
             category_queries.append({"match": {"sub_category": sub_category, "boost": boost}})
 
         return {"bool": {"should": category_queries, "minimum_should_match": 1}} if category_queries else None
@@ -100,8 +97,8 @@ class QueryBuilder:
 
         vector_query = self._build_vector_query(embedding_vector, search_config)
         if vector_query and "query" in query_body:
-            query_body["query"] = {"bool": {"should": [query_body["query"], vector_query], "boost": search_config.combined_query_boost} } # Direct access
-        elif vector_query: # if its the only query
+            query_body["query"] = {"bool": {"should": [query_body["query"], vector_query], "boost": search_config.combined_query_boost} }
+        elif vector_query:
           query_body["query"] = vector_query
 
         filter_clauses = []
