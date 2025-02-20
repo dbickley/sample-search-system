@@ -1,0 +1,11 @@
+scrapy
+elasticsearch
+elasticsearch_dsl
+elasticsearch[async]
+flask
+flask-sqlalchemy
+Flask[async]
+asyncio
+logging
+quart
+sentence_transformers

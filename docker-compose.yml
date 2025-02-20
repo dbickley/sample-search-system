@@ -1,0 +1,20 @@
+services:
+  elasticsearch:
+    image: elasticsearch:8.17.2
+    ports:
+      - "9200:9200" # Explicitly quote port mappings
+      - "9300:9300" # Explicitly quote port mappings
+    environment:
+      discovery.type: single-node
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+      network.host: 0.0.0.0 # Crucial: Bind to all interfaces within the container
+      ELASTIC_PASSWORD: password
+    ulimits: # Recommended for production-like environments
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+
+volumes:
+  esdata:

@@ -1,0 +1,183 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36" version="26.0.11">
+  <diagram name="Page-1" id="YnlqDkiU7GOfNsJINfGF">
+    <mxGraphModel dx="3237" dy="1000" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-73" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="U_Kl24kfFMyMi1yBNWpx-68" target="U_Kl24kfFMyMi1yBNWpx-69">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-68" value="UI&lt;div&gt;(/static/...)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1167" y="283" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1" source="U_Kl24kfFMyMi1yBNWpx-69" target="U_Kl24kfFMyMi1yBNWpx-78">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-83" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="U_Kl24kfFMyMi1yBNWpx-69" target="U_Kl24kfFMyMi1yBNWpx-74">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-69" value="Search Endpoint&lt;div&gt;(app.py)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1167" y="453" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="U_Kl24kfFMyMi1yBNWpx-74" target="U_Kl24kfFMyMi1yBNWpx-77">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-90" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="U_Kl24kfFMyMi1yBNWpx-74" target="U_Kl24kfFMyMi1yBNWpx-85">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-74" value="Search Orchestrator&lt;div&gt;(Search Orchestrator Service)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1167" y="643" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-77" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Search Orchestrator&lt;/h1&gt;&lt;p&gt;Primary Service for deciding how to execute the search efficiently given the request.&amp;nbsp;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-747" y="623" width="320" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-78" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Search Endpoint&lt;/h1&gt;&lt;p&gt;In addition to the basic search requests it can take flags and a specific search strategy id as optional parameters.&lt;/p&gt;&lt;p&gt;This search strategy id is used to simplify experimentation as well as allow easy roll back to previous versions.&lt;/p&gt;&lt;p&gt;It also allows for one to override a large number of the search parameters directly. This is intended to be used by the ranking engineer to test different approaches.&lt;/p&gt;&lt;p&gt;In production, we would want to remove a number of these API parameters to prevent abuse.&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-747" y="373" width="320" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-81" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Build Understanding Model&lt;/h1&gt;&lt;p&gt;Collects everything we know the user, session, and query into a single object so it can be easily used by other parts of the system.&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-747" y="828" width="330" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-108" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;" edge="1" parent="1" source="U_Kl24kfFMyMi1yBNWpx-85" target="U_Kl24kfFMyMi1yBNWpx-81">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-112" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="U_Kl24kfFMyMi1yBNWpx-85" target="U_Kl24kfFMyMi1yBNWpx-92">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-85" value="Build Query Understanding Model" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1387" y="783" width="560" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-71" value="Query2Taxonomy" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-85">
+          <mxGeometry x="290" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="U_Kl24kfFMyMi1yBNWpx-85" source="U_Kl24kfFMyMi1yBNWpx-72" target="U_Kl24kfFMyMi1yBNWpx-75">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="120" />
+              <mxPoint x="70" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="U_Kl24kfFMyMi1yBNWpx-85" source="U_Kl24kfFMyMi1yBNWpx-72" target="U_Kl24kfFMyMi1yBNWpx-76">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="120" />
+              <mxPoint x="210" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="U_Kl24kfFMyMi1yBNWpx-85" source="U_Kl24kfFMyMi1yBNWpx-72" target="U_Kl24kfFMyMi1yBNWpx-71">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="120" />
+              <mxPoint x="350" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-89" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="U_Kl24kfFMyMi1yBNWpx-85" source="U_Kl24kfFMyMi1yBNWpx-72" target="U_Kl24kfFMyMi1yBNWpx-82">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="120" />
+              <mxPoint x="490" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-72" value="Build Understanding" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-85">
+          <mxGeometry x="220" y="30" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-75" value="Retrive User Context" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-85">
+          <mxGeometry x="10" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-76" value="Retrive Session Context" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-85">
+          <mxGeometry x="150" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-82" value="Generate Query Embedding" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-85">
+          <mxGeometry x="430" y="140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-109" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;" edge="1" parent="1" source="U_Kl24kfFMyMi1yBNWpx-92" target="U_Kl24kfFMyMi1yBNWpx-93">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-113" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="U_Kl24kfFMyMi1yBNWpx-92" target="U_Kl24kfFMyMi1yBNWpx-94">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-92" value="QueryBuilder" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1167" y="1053" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-93" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Query Builder&lt;/h1&gt;&lt;p&gt;Build the retrieval query using the understanding model combined with the search request parameters.&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-747" y="1023" width="320" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-110" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;" edge="1" parent="1" source="U_Kl24kfFMyMi1yBNWpx-94" target="U_Kl24kfFMyMi1yBNWpx-95">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-114" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="U_Kl24kfFMyMi1yBNWpx-94" target="U_Kl24kfFMyMi1yBNWpx-96">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-94" value="ElasticService" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1167" y="1213" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-95" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Elastic Service&lt;/h1&gt;&lt;p&gt;Executes the ES query and builds the search result. In the current version semantic results and lexical results are combined into a single search.&amp;nbsp;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-747" y="1183" width="320" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-111" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;strokeColor=default;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;" edge="1" parent="1" source="U_Kl24kfFMyMi1yBNWpx-96" target="U_Kl24kfFMyMi1yBNWpx-97">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-115" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="U_Kl24kfFMyMi1yBNWpx-96" target="U_Kl24kfFMyMi1yBNWpx-98">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-96" value="Reranker" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1167" y="1353" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-97" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Reranker&lt;/h1&gt;&lt;p&gt;Used to personalize and/or align the results with business priorities.&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Not fully implemented here as it requires signal data not present in the sample dataset.&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-747" y="1323" width="320" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-101" value="Idea Pipeline" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-387" y="223" width="160" height="1360" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-99" value="Facet Building/Ranking" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-101">
+          <mxGeometry x="20" y="1061" width="120" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-100" value="Result Hydration" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-101">
+          <mxGeometry x="20" y="1225" width="120" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-102" value="Experimentation UI&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-101">
+          <mxGeometry x="20" y="39" width="120" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-103" value="Phrase Analysis" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-101">
+          <mxGeometry x="20" y="560" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-104" value="Query Expansion" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-101">
+          <mxGeometry x="20" y="590" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-105" value="IntentDetection" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-101">
+          <mxGeometry x="20" y="620" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-106" value="KB Integration" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-101">
+          <mxGeometry x="20" y="650" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-107" value="Sponsored Results Retrieval/Ranking" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-101">
+          <mxGeometry x="20" y="914" width="120" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-123" value="Multiple candidate set retrival" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-101">
+          <mxGeometry x="20" y="959" width="120" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-124" value="Signal capturing" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-101">
+          <mxGeometry x="20" y="72" width="120" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-125" value="Metrics" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-101">
+          <mxGeometry x="20" y="105" width="120" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-126" value="Autocomplete" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-101">
+          <mxGeometry x="20" y="138" width="120" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-116" value="Lifecycle of a Search Request" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=80;" vertex="1" parent="1">
+          <mxGeometry x="-1427" y="113" width="1200" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-118" value="Current System" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1427" y="223" width="1040" height="1360" as="geometry" />
+        </mxCell>
+        <mxCell id="U_Kl24kfFMyMi1yBNWpx-98" value="Return the results" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="U_Kl24kfFMyMi1yBNWpx-118">
+          <mxGeometry x="260" y="1270" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
