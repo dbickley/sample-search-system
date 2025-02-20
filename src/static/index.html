@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <h1>Your App</h1>
+
+        <div class="tabs">
+            <button class="tab active" onclick="openTab('search-tab')">Search</button>
+            <button class="tab" onclick="openTab('management-tab')">Management</button>
+            <button class="tab" onclick="openTab('experiment-tab')">Experiment</button>
+        </div>
+
+        <div id="search-tab" class="tab-content active">
+            <div class="search-controls">
+                <div class="filter-group">
+                    <h2>Category Filters</h2>
+                    <select id="main-category">
+                        <option value="">All Main Categories</option>
+                    </select>
+                    <select id="sub-category">
+                        <option value="">All Sub Categories</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <h2>Keyword</h2>
+                    <div class="search-group">
+                        <input id="user-query" type="text" placeholder="Enter a query">
+                        <button id="submit-button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h2>Options</h2>
+                    <div>predict-taxonomy: <input type="checkbox" id="predict-taxonomy" name="predict-taxonomy" checked></div>
+                    <div>keyword search: <input type="checkbox" id="keyword-search" name="keyword-search" checked></div>
+                    <div>vector search: <input type="checkbox" id="vector-search" name="vector-search" checked></div>
+                    <div>re-rank: <input type="checkbox" id="re-rank" name="re-rank" checked></div>
+                </div>
+                <div class="filter-group">
+                    <h2>Results per Page</h2>
+                    <select id="number-of-results">
+                        <option value="10">10</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="results-container">
+                <div class="facets-container">
+                    <h2>Facets</h2>
+                    <div id="facet-options">
+                        <p>No facets available.</p>
+                    </div>
+                </div>
+                <div id="result"></div>
+            </div>
+
+            <div id="pagination">
+                <button id="prev-page"><i class="fas fa-chevron-left"></i></button>
+                <span id="page-number">1</span>
+                <button id="next-page"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <div id="management-tab" class="tab-content">
+            <button id="reindex-btn">Reindex</button><br>
+            <button id="update-embeddings-btn">Update Embeddings</button><br>
+
+        </div>
+
+        <div id="experiment-tab" class="tab-content">
+            <div class="search-controls">
+                <div class="search-group">
+                    <div class="search-column">
+                        <h2>Search 1</h2>
+                        <input id="experiment-query1" type="text" placeholder="Enter query 1">
+                        <div class="options-group">
+                            <h3>Options</h3>
+                            <label><input type="checkbox" id="predict-taxonomy1" checked> predict-taxonomy</label><br>
+                            <label><input type="checkbox" id="keyword-search1" checked> keyword search</label><br>
+                            <label><input type="checkbox" id="vector-search1"> vector search</label><br>
+                            <label><input type="checkbox" id="re-rank1"> re-rank</label>
+                        </div>
+                        <div class="search-config">
+                            <h3>Search Config 1</h3>
+                            <label for="fields-to-match1">Fields to Match:</label>
+                            <input type="text" id="fields-to-match1" value="name,main_category,sub_category"><br>
+        
+                            <h4>Keyword</h4>
+                            <label for="keyword-boost1">Boost:</label>
+                            <input type="number" id="keyword-boost1" value="1.0"><br>
+                            <label for="phrase-boost1">Phrase Boost:</label>
+                            <input type="number" id="phrase-boost1" value="2.0"><br>
+                            <label for="phrase-prefix-boost1">Phrase Prefix Boost:</label>
+                            <input type="number" id="phrase-prefix-boost1" value="1.0"><br>
+                            <label for="fuzzy-boost1">Fuzzy Boost:</label>
+                            <input type="number" id="fuzzy-boost1" value="1.0"><br>
+                            <label for="best-fields-boost1">Best Fields Boost:</label>
+                            <input type="number" id="best-fields-boost1" value="1.0"><br>
+                            <label for="predicted-category-boost1">Predicted Category Boost:</label>
+                            <input type="number" id="predicted-category-boost1" value="1.2"><br>
+        
+                            <h4>Vector</h4>
+                            <label for="vector-k1">K:</label>
+                            <input type="number" id="vector-k1" value="10"><br>
+                            <label for="vector-candidates1">Num Candidates:</label>
+                            <input type="number" id="vector-candidates1" value="1000"><br>
+                            <label for="vector-boost1">Boost:</label>
+                            <input type="number" id="vector-boost1" value="2"><br>
+
+                            <label for="combined-query-boost1">Combined Query Boost:</label>
+                            <input type="number" id="combined-query-boost1" value="1.1"><br>
+        
+                         </div>
+                    </div>
+                    <div class="search-column">
+                        <h2>Search 2</h2>
+                        <input id="experiment-query2" type="text" placeholder="Enter query 2">
+                        <div class="options-group">
+                            <h3>Options</h3>
+                            <label><input type="checkbox" id="predict-taxonomy2" checked> predict-taxonomy</label><br>
+                            <label><input type="checkbox" id="keyword-search2" checked> keyword search</label><br>
+                            <label><input type="checkbox" id="vector-search2" checked> vector search</label><br>
+                            <label><input type="checkbox" id="re-rank2"> re-rank</label>
+                        </div>
+                        <div class="search-config">
+                            <h3>Search Config 2</h3>
+                            <label for="fields-to-match2">Fields to Match:</label>
+                            <input type="text" id="fields-to-match2" value="name,main_category,sub_category"><br>
+        
+                            <h4>Keyword</h4>
+                            <label for="keyword-boost2">Boost:</label>
+                            <input type="number" id="keyword-boost2" value="1.0"><br>
+                            <label for="phrase-boost2">Phrase Boost:</label>
+                            <input type="number" id="phrase-boost2" value="2.0"><br>
+                            <label for="phrase-prefix-boost2">Phrase Prefix Boost:</label>
+                            <input type="number" id="phrase-prefix-boost2" value="1.0"><br>
+                            <label for="fuzzy-boost2">Fuzzy Boost:</label>
+                            <input type="number" id="fuzzy-boost2" value="1.0"><br>
+                            <label for="best-fields-boost2">Best Fields Boost:</label>
+                            <input type="number" id="best-fields-boost2" value="1.0"><br>
+                            <label for="predicted-category-boost2">Predicted Category Boost:</label>
+                            <input type="number" id="predicted-category-boost2" value="1.2"><br>
+        
+                            <h4>Vector</h4>
+                            <label for="vector-k2">K:</label>
+                            <input type="number" id="vector-k2" value="10"><br>
+                            <label for="vector-candidates2">Num Candidates:</label>
+                            <input type="number" id="vector-candidates2" value="1000"><br>
+                            <label for="vector-boost2">Boost:</label>
+                            <input type="number" id="vector-boost2" value="2"><br>
+
+                            <label for="combined-query-boost2">Combined Query Boost:</label>
+                            <input type="number" id="combined-query-boost2" value="1.1"><br>
+        
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="filter-group">                
+                    <button id="experiment-submit"><i class="fas fa-search"></i></button>
+        
+                    Results per Page:
+                    <select id="number-of-results">
+                        <option value="10">10</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+
+            <div class="experiment-results-container">
+                <div id="experiment-result1" class="experiment-results"></div>
+                <div id="experiment-result2" class="experiment-results"></div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
