@@ -27,29 +27,23 @@ class SampleSearchSystemApp:
 
         @self.app.route('/api/search', methods=['POST'])
         async def search():
-            #commenting out try/catch for debugging
-            #TODO add back try/catch
-            #try:
-            logging.info("Received search request")
+            try:
+                logging.debug("Received search request")
 
-            # Parse the JSON data into a UserQuery object
-            data = await request.get_json()
-            user_query = UserQuery(**data)
-            if user_query.search_config is not None and isinstance(user_query.search_config, dict):
-                user_query.search_config = SearchConfig.from_dict(user_query.search_config)
+                # Parse the JSON data into a UserQuery object
+                data = await request.get_json()
+                user_query = UserQuery(**data)
+                if user_query.search_config is not None and isinstance(user_query.search_config, dict):
+                    user_query.search_config = SearchConfig.from_dict(user_query.search_config)
 
+                search_results = await self.search_orchestrator_service.search(user_query)  
+                search_results_json=jsonify(search_results)
 
-            #testing
-            logging.info("user_query.search_config.fields_to_match: %s", user_query.search_config.fields_to_match)
-            logging.info("query: %s", json.dumps(asdict(user_query)))
-
-            logging.info("Sending request to search service")
-            search_results = await self.search_orchestrator_service.search(user_query)  # Await the async call
-            logging.info("Search request completed")
-            return jsonify(search_results), 200
-            # except Exception as e:
-            #     logging.error("Error processing search request: %s", str(e))
-            #     return jsonify({'error': str(e)}), 500
+                logging.debug("Search request completed")
+                return search_results_json, 200
+            except Exception as e:
+                logging.error("Error processing search request: %s", str(e))
+                return jsonify({'error': str(e)}), 500
 
         @self.app.route('/api/reindex', methods=['POST'])
         async def reindex():
@@ -76,8 +70,6 @@ class SampleSearchSystemApp:
         @self.app.route('/')
         async def index():
             return await send_from_directory(self.app.static_folder, "index.html")
-        
-
 
     def run(self):
         self.app.run(debug=True)
@@ -85,7 +77,7 @@ class SampleSearchSystemApp:
 async def main():
     app = SampleSearchSystemApp()
     app.register_routes()
-    await app.app.run_task()  # Use Quart's async run
+    await app.app.run_task()  
 
 if __name__ == '__main__':
     asyncio.run(main(), debug=True)

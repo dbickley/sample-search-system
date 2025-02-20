@@ -15,7 +15,7 @@ class UserQuery:
     vector_search: Optional[bool] = None
     re_rank: Optional[bool] = None
     search_stratagy_verions: Optional[str] = 'v1'
-    search_config: SearchConfig = field(default_factory=SearchConfig)  # Directly use SearchConfig
+    search_config: SearchConfig = field(default_factory=SearchConfig)
 
 
     def to_dict(self) -> Dict[str, Any]:

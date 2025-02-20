@@ -21,13 +21,11 @@ class ElasticService:
             terms = [bucket["key"] for bucket in response["aggregations"][field_name]["buckets"]]
             return terms
         except Exception as e: # pylint: disable=W0703
-            logging.error("Error getting terms for field %s: %s", field_name, e)  # Lazy formatting
+            logging.error("Error getting terms for field %s: %s", field_name, e)
             return []
 
     async def search(self, query: str):
-            logging.info("Query: %s", query)  # Lazy formatting
             es_response = self.es.search(index=self.index_name, body=query)
-            logging.info("Query success: hits: %s", es_response["hits"]["total"]["value"])  # Lazy formatting
             search_result = self.convert_es_response_to_search_result(query['from'], es_response)
             return search_result
 
@@ -57,6 +55,6 @@ class ElasticService:
 
             search_result_rows.append(search_result_row)
         
-        search_result = SearchResult(number_of_results=total_hits, search_result_rows=search_result_rows)  # Important change
+        search_result = SearchResult(number_of_results=total_hits, search_result_rows=search_result_rows)
 
         return search_result

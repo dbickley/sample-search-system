@@ -19,14 +19,14 @@ class SearchOrchestratorService:
     async def search(self, user_query):
         if(user_query.search_stratagy_verions == 'v1'):
             query_understanding = await self.query_understanding_builder.build(user_query)      
-            if isinstance(query_understanding.embedding_vector, np.ndarray):  # Check if it's a NumPy array
+            if isinstance(query_understanding.embedding_vector, np.ndarray):
                 logging.info("Embedding vector is a NumPy array.")
             query =  self.query_builder.build_query(user_query,query_understanding)
             search_result = await self.elastic_service.search(query)
             if(user_query.re_rank):
                 search_result = await self.rerank_service.rank_results(search_result, query_understanding)
             
-            #for debugging
+            #for debugging from the UI
             search_result.query_understanding = query_understanding
             search_result.es_query = query
 
