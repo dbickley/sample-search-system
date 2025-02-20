@@ -1,0 +1,42 @@
+Index status
+http://localhost:9200/_cat/indices?v
+
+
+Basic search
+http://localhost:9200/products/_search?pretty=true
+
+Mapping
+http://localhost:9200/products/_mapping?pretty
+
+Stats
+http://localhost:9200/_stats?pretty=true
+
+
+Count of records with name_embeddings:
+curl -X GET 'http://localhost:9200/products/_count' -H 'Content-Type: application/json' -d '{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "exists": {
+            "field": "name_embedding"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "script": {
+            "script": {
+              "source": "params.embedding.length == 0",
+              "params": {
+                "embedding": {
+                  "field": "name_embedding"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}' -u elastic:password
